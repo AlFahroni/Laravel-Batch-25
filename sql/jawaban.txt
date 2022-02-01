@@ -1,0 +1,61 @@
+1. Soal 1 Membuat Database
+   create database myshop
+
+2. Soal 2 Membuat Table di Dalam Database
+   - Table Users
+     create table users(
+     id int auto_increment,
+     name varchar(255),
+     email varchar(255),
+     password varchar(255),
+     primary key(id)
+     );
+   - Table Items
+     create table items(
+     id int auto_increment,
+     name varchar(255),
+     description varchar(255),
+     price int,
+     stock_int
+     category_id int,
+     primary key(id),
+     foreign key(category_id) references categories(id)
+     );
+   - Table Categories
+     create table categories(
+     id int auto_increment,
+     name varchar(255),
+     primary key(id)
+     );
+
+3. Soal 3 Memasukkan Data pada Table
+   - Table users
+     insert into users(name, email, password) values
+     ("John Doe", "john@doe.com", "john123"),
+     ("Jane Doe", "jane@doe.com", "jenita123");
+   - Table categories
+     insert into categories(name) values
+     ("gadget"),
+     ("cloth"),
+     ("men"),
+     ("women"),
+     ("branded");
+   - Table items
+     insert into items(name, description, price, stock, category_id) values
+     ("sumsang b50", "hape keren dari merek sumsang", 4000000, 100, 1),
+     ("uniklooh", "baju keren dari brand ternama", 500000, 50, 2),
+     ("IMHO Watch", "jam tangan anak yang jujur banget", 2000000, 10, 1);
+
+4. Soal 4 Mengambil Data dari Database
+   - Mengambil data users
+     select id, name, email from users;
+   - Mengambil data items
+     a. Buatlah sebuah query untuk mendapatkan data item pada table items yang memiliki harga di atas 1000000 (satu juta).
+        select * from items where price > 1000000;
+     b. Buat sebuah query untuk mengambil data item pada table items yang memiliki name serupa atau mirip (like) dengan kata kunci “uniklo”, “watch”, atau “sang” (pilih salah satu saja).
+        select * from items where name like 'uniklo%';
+   - Menampilkan data items join dengan kategori
+     select items.name, items.description, items.price, items.stock, items.category_id, categories.name from items inner join categories on items.category_id = categories.id;
+
+5. Soal 5 Mengubah Data dari Database
+   update items set price = '2500000' where name = 'sumsang b50';
